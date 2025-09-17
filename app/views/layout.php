@@ -22,8 +22,8 @@
                         href="index.php?controller=Dashboard&action=index">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($_GET['controller'] ?? '') === 'Producto' ? 'active' : '' ?>"
-                        href="index.php?controller=Producto&action=index">Libros</a>
+                    <a class="nav-link <?= ($_GET['controller'] ?? '') === 'Autor' ? 'active' : '' ?>"
+                        href="index.php?controller=Autor&action=index">Autores</a>
                 </li>
  
             </ul>

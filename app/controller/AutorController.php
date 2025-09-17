@@ -12,7 +12,7 @@ class AutorController
 
         $autor = new Autor();
         $autores = $autor->listar();
-        $vista = "app/views/productos/index.php";
+        $vista = "app/views/autor/index.php";
         $titulo = "Listado de autores";
 
         require 'app/views/layout.php';
