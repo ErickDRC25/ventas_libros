@@ -17,7 +17,12 @@
             echo "<script>alert('credenciales incorrectas');window.location='index.php';</script>";
         }
 
-    }
+        }
+
+        public function cerrar_sesion(){
+            session_destroy();
+            header("Location: index.php");
+        }
 
     }
 
