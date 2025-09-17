@@ -32,8 +32,8 @@
             <td><?=$autor['estado']?></td>
             <td>
     <div class="d-flex gap-2">
-        <a href="index.php?controller=Autor&action=editar&id=<?=$autor['id_autor']?>" class="btn btn-warning" role="button">Editar</a>
-        <a href="index.php?controller=Autor&action=desactivar&id=<?=$autor['id_autor']?>" class="btn btn-danger" role="button">Eliminar</a>
+        <a href="index.php?controller=Autor&action=editarAutor&id=<?=$autor['id_autor']?>" class="btn btn-warning" role="button">Editar</a>
+        <a href="index.php?controller=Autor&action=desactivarAutor&id=<?=$autor['id_autor']?>" class="btn btn-danger" role="button">Eliminar</a>
     </div>
 </td>
         </tr>

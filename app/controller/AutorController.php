@@ -33,22 +33,42 @@ class AutorController
             exit();
         }
 
-        $data=[
-            'nombre_autor'=>$_POST['nombre_autor'] ?? '',
-            'apellido_autor'=>$_POST['apellido_autor'] ?? '',
-            'nacionalidad'=>$_POST['nacionalidad'] ?? '',
-            'fecha_nacimiento'=>$_POST['fecha_nacimiento']?? '',
-            'biografia'=>$_POST['biografia']
+        $data = [
+            'nombre_autor' => $_POST['nombre_autor'] ?? '',
+            'apellido_autor' => $_POST['apellido_autor'] ?? '',
+            'nacionalidad' => $_POST['nacionalidad'] ?? '',
+            'fecha_nacimiento' => $_POST['fecha_nacimiento'] ?? '',
+            'biografia' => $_POST['biografia']
         ];
 
         $autor = new Autor();
 
-        if($autor->guardar($data)){
+        if ($autor->guardar($data)) {
             header("Location: index.php?controller=Autor&action=index");
             exit();
-        }else{
+        } else {
             echo "<script>alert('Error al guardar el autor'); windows.history.back();</script>";
         }
+    }
 
+    public function editarAutor()
+    {
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            echo "ID no identificado";
+            return;
+        }
+        $autor =  new Autor();
+        $autor = $autor->obtenerId($id);
+
+        if (!$autor) {
+            echo "Autor no encontrado";
+            return;
+        }
+
+        $vista = 'app/views/autor/editar.php';
+        $titulo = 'Editar Autor';
+        require 'app/views/layout.php';
     }
 }

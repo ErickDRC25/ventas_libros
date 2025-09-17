@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <div class="mt-5">
-        <h2 class="text-center mb-5">Registrar autor</h2>
+        <h2 class="text-center mb-5">Actualizar Autor</h2>
     </div>
 
     <div class="container ">
@@ -8,29 +8,29 @@
             <div class=" row">
                 <div class="col-md-6 mb-3">
                     <label for="nombre" class="form-label">Nombre del Autor</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre_autor" placeholder="Mario">
+                    <input type="text" class="form-control" id="nombre" name="nombre_autor" placeholder="Mario" value="<?=$autor['nombre_autor']?>">
 
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="apellido" class="form-label">Apellido del Autor</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido_autor" placeholder="Varga LLosa">
+                    <input type="text" class="form-control" id="apellido" name="apellido_autor" placeholder="Varga LLosa" value="<?=$autor['apellido_autor']?>">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="nacionalidad" class="form-label">Nacionalidad</label>
-                    <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" placeholder="Peruano">
+                    <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" placeholder="Peruano" value="<?=$autor['nacionalidad']?>">
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label for="fnacimiento">Fecha de Nacimiento</label>
-                    <input type="date" name="fecha_nacimiento" id="fnacimiento">
+                    <input type="date" name="fecha_nacimiento" id="fnacimiento" value="<?=$autor['fecha_nacimiento']?>">
                 </div>
             </div>
 
             <div class="form-floating">
-                <textarea class="form-control" placeholder="Escritor, novelista ..." id="Biografia" name="biografia"></textarea>
+                <textarea class="form-control" placeholder="Escritor, novelista ..." id="Biografia" name="biografia" ><?=$autor['biografia']?></textarea>
                 <label for="Biografia">Biografia</label>
             </div>
 

@@ -22,14 +22,20 @@ class Autor
         values(:nombre_autor,:apellido_autor,:nacionalidad,:fecha_nacimiento,:biografia,'Activo')";
 
         $stmt=$this->db->prepare($sql);
-        return $stmt->execute([$data]);
+        return $stmt->execute([
+        ':nombre_autor'     => $data['nombre_autor'],
+        ':apellido_autor'   => $data['apellido_autor'],
+        ':nacionalidad'     => $data['nacionalidad'],
+        ':fecha_nacimiento' => $data['fecha_nacimiento'],
+        ':biografia'        => $data['biografia'],
+    ]);
     }
 
     public function obtenerId($id){
-        $sql = "SELECT * FROM autor where id=:id";
+        $sql = "SELECT * FROM autor where id_autor=:id_autor";
         $stmt=$this->db->prepare($sql);
         $stmt->execute([
-            "id"=>$id
+            ":id_autor"=>$id
         ]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
