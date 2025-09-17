@@ -3,7 +3,7 @@
 class Database {
     public static function conectar() {
         try {
-            $pdo = new PDO("mysql:host=localhost;dbname=bd_ventas_libro", "root", "");
+            $pdo = new PDO("mysql:host=localhost;dbname=bd_ventas_libros", "root", "");
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $pdo;
         } catch (PDOException $e) {
