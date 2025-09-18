@@ -1,0 +1,129 @@
+<?php
+
+require_once 'app/models/Libro.php';
+
+class LibroController
+{
+    public function index()
+    {
+        if (!isset($_SESSION['cliente'])) {
+            header('Location: index.php');
+            exit();
+        }
+        //creamos una variable que va a contener un objeto tipo libro
+        $libroModel = new Libro();
+        $libros = $libroModel->obtenerTodos();
+        $vista = 'app/views/Libro/index.php';
+        $titulo = 'listado de libros';
+
+        require 'app/views/layout.php';
+    }
+
+    public function buscarLibro()
+    {
+        $titulo_busqueda = $_GET['titulo'] ?? '';
+
+        $libroModel = new Libro();
+        $libros = $libroModel->buscarTitulo($titulo_busqueda);
+
+        $titulo_vista = 'Resultados de Búsqueda';
+        $vista = 'app/views/Libro/index.php';
+
+        require_once 'app/views/layout.php';
+    }
+
+    public function crear()
+    {
+        $vista = 'app/views/Libro/crear.php';
+        $titulo = "Agregar Libros";
+        require 'app/views/layout.php';
+    }
+
+
+    public function guardar()
+    {
+
+        if (!isset($_SESSION['cliente'])) {
+            header('Location: index.php');
+            exit();
+        }
+
+        $data = [
+            'titulo' => $_POST['txtTitulo'] ?? '',
+            'isbn' => $_POST['txtIsbn'] ?? '', // Nota: este sigue siendo un error de ortografía
+            'id_autor' => $_POST['txtAutorId'] ?? '',
+            'id_editorial' => $_POST['txtEditorialId'] ?? '',
+            'genero' => $_POST['txtGenero'] ?? '',
+            'anio_publicacion' => $_POST['txtAnioPublicacion'] ?? '',
+            'precio' => $_POST['txtPrecio'] ?? '',
+            'stock' => $_POST['txtStock'] ?? ''
+        ];
+        $libro =  new Libro();
+
+        if ($libro->guardar($data)) {
+            header('Location: index.php?controller=Libro&action=index');
+            exit();
+        } else {
+            echo "<script>alert('Error al guardar el producto');windows.history.back();</script>";
+        }
+    }
+
+
+    public function editar()
+    {
+
+        $id = $_GET['id_libro'] ?? null;
+
+        if (!$id) {
+            echo "ID no identificado";
+            return;
+        }
+        $libroModel = new Libro();
+        $libro = $libroModel->obtenerId($id);
+
+        if (!$libro) {
+            echo "Libro no encontrado";
+            return;
+        }
+        $vista = 'app/views/Libro/editar.php';
+        $titulo = "Editar Libro";
+        require 'app/views/layout.php';
+    }
+    //falta
+    public function actualizar()
+    {
+        $data = [
+            'id_libro' => $_POST['id'] ?? '',
+            'titulo' => $_POST['txtTitulo'] ?? '',
+            'isbn' => $_POST['txtIsbn'] ?? '',
+            'id_autor' => $_POST['txtAutorId'] ?? '',
+            'id_editorial' => $_POST['txtEditorialId'] ?? '',
+            'genero' => $_POST['txtGenero'] ?? '',
+            'anio_publicacion' => $_POST['txtAnioPublicacion'] ?? '',
+            'precio' => $_POST['txtPrecio'] ?? '',
+            'stock' => $_POST['txtStock'] ?? ''
+        ];
+        $libro =  new Libro();
+        $libro->actualizar($data);
+        header('Location: index.php?controller=Libro&action=index');
+        exit();
+    }
+    //hasta aqui
+    public function eliminar()
+    {
+        if (!isset($_SESSION['cliente'])) {
+            header('Location: index.php');
+            exit();
+        }
+        $id = $_GET['id_libro'] ?? null;
+
+        if (!$id) {
+            echo "ID no identificado";
+            return;
+        }
+        $producto = new Libro();
+        $producto->inactivar($id);
+        header('Location: index.php?controller=Libro&action=index');
+        exit();
+    }
+}
