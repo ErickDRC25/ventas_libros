@@ -26,7 +26,7 @@ class AuthController
             }
             exit();
         } else {
-            echo "<script>alert('Credenciales incorrectas');window.location='index.php';</script>";
+            echo "<script>alert('Credenciales incorrectas');window.location='index.php?controller=Auth&action=login';</script>";
         }
     }
 

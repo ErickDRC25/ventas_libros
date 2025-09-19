@@ -23,6 +23,8 @@
             </div>
             
             <button type="submit" class="btn btn-primary">Submit</button>
+            <!-- Botón Cancelar para regresar al catálogo -->
+            <a href="index.php?controller=Catalogo&action=index" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
 
