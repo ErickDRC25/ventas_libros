@@ -6,7 +6,7 @@ class LibroController
 {
     public function index()
     {
-        if (!isset($_SESSION['cliente'])) {
+        if (!isset($_SESSION['usuario'])) {
             header('Location: index.php');
             exit();
         }
