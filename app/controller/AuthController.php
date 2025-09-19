@@ -1,31 +1,38 @@
 <?php
-    require_once 'app/models/Cliente.php';
-    
-    class AuthController{
-        public function login(){
-            require 'app/views/login.php';
-        }
+require_once 'app/models/Cliente.php';
 
-        public function autenticar(){
-        $cliente = new Cliente();
-        $data = $cliente->login($_POST['correo'],$_POST['contraseña']);
-
-        if($data){
-            $_SESSION['usuario'] = $data;
-            header("Location: index.php?controller=Dashboard&action=index");
-        }else{
-            echo "<script>alert('credenciales incorrectas');window.location='index.php';</script>";
-        }
-
-        }
-
-        public function cerrar_sesion(){
-            session_destroy();
-            header("Location: index.php");
-        }
-
+class AuthController
+{
+    public function login()
+    {
+        require 'app/views/login.php';
     }
 
-     
-    
-?>
+    public function autenticar()
+    {
+        $cliente = new Cliente();
+        $data = $cliente->login($_POST['correo'], $_POST['contraseña']);
+
+        if ($data) {
+            $_SESSION['id_cliente'] = $data['id_cliente'];
+            $_SESSION['usuario'] = $data['nombre'] . ' ' . $data['apellido'];
+            $_SESSION['rol'] = $data['id_rol'];
+
+            // Redirigir según rol
+            if ($data['id_rol'] == 1) { // Admin
+                header("Location: index.php?controller=Dashboard&action=index");
+            } else { // Cliente normal
+                header("Location: index.php?controller=Catalogo&action=index");
+            }
+            exit();
+        } else {
+            echo "<script>alert('Credenciales incorrectas');window.location='index.php';</script>";
+        }
+    }
+
+    public function cerrar_sesion()
+    {
+        session_destroy();
+        header("Location: index.php");
+    }
+}

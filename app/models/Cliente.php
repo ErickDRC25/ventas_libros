@@ -20,7 +20,7 @@ class Cliente
             'password'=>$password
         ]);
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 
@@ -38,7 +38,7 @@ class Cliente
     }
 
     public function activar($id){
-        $sql = "UPDATE cliente set estao='Activo' where id_cliente=:id_cliente";
+        $sql = "UPDATE cliente set estado='Activo' where id_cliente=:id_cliente";
         $stmt=$this->db->prepare($sql);
         return $stmt->execute([
             "id_cliente"=>$id
