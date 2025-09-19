@@ -34,6 +34,14 @@ class LibroController
 
     public function crear()
     {
+        require_once 'app/models/Autor.php';
+        require_once 'app/models/Editorial.php';
+
+        $autorModel = new Autor();
+        $editorialModel = new Editorial();
+
+        $autores = $autorModel->listar();
+        $editoriales = $editorialModel->listar();
         $vista = 'app/views/Libro/crear.php';
         $titulo = "Agregar Libros";
         require 'app/views/layout.php';
@@ -43,7 +51,7 @@ class LibroController
     public function guardar()
     {
 
-        if (!isset($_SESSION['cliente'])) {
+        if (!isset($_SESSION['usuario'])) {
             header('Location: index.php');
             exit();
         }
@@ -56,7 +64,8 @@ class LibroController
             'genero' => $_POST['txtGenero'] ?? '',
             'anio_publicacion' => $_POST['txtAnioPublicacion'] ?? '',
             'precio' => $_POST['txtPrecio'] ?? '',
-            'stock' => $_POST['txtStock'] ?? ''
+            'stock' => $_POST['txtStock'] ?? '',
+            'stock' => $_POST['txtStock'] ?? '',
         ];
         $libro =  new Libro();
 
@@ -111,7 +120,7 @@ class LibroController
     //hasta aqui
     public function eliminar()
     {
-        if (!isset($_SESSION['cliente'])) {
+        if (!isset($_SESSION['usuario'])) {
             header('Location: index.php');
             exit();
         }

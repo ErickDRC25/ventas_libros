@@ -32,8 +32,8 @@ class Libro
     }
     public function guardar($data)
     {
-        $sql = "INSERT INTO Libro(titulo, isbn, id_autor, id_editorial, genero, anio_publicacion, precio, stock) 
-    VALUES(:titulo, :isbn, :id_autor, :id_editorial, :genero, :anio_publicacion, :precio, :stock)";
+        $sql = "INSERT INTO Libro(titulo, isbn, id_autor, id_editorial, genero, anio_publicacion, precio, stock,imagen) 
+    VALUES(:titulo, :isbn, :id_autor, :id_editorial, :genero, :anio_publicacion, :precio, :stock,:imagen)";
 
         $st = $this->db->prepare($sql);
 
@@ -42,13 +42,14 @@ class Libro
 
     public function actualizar($data)
     {
-        $sql = "UPDATE Libro SET titulo = :titulo, isbn = :isbn, id_autor = :id_autor, id_editorial = :id_editorial, genero = :genero,anio_publicacion=:anio_publicacion,precio= :precio, stock=:stock
+        $sql = "UPDATE Libro SET titulo = :titulo, isbn = :isbn, id_autor = :id_autor, id_editorial = :id_editorial, 
+                genero = :genero,anio_publicacion=:anio_publicacion,precio= :precio, stock=:stock, imagen=:imagen
          WHERE id_libro = :id_libro";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute($data);
     }
 
-    //esta listo
+  
     public function eliminar($id)
     {
         $sql = "DELETE FROM Libro WHERE id_libro = :id_libro";

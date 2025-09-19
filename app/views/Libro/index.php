@@ -32,6 +32,7 @@
                             <th scope="col">AÑO PUBLICACION</th>
                             <th scope="col">PRECIO</th>
                             <th scope="col">STOCK</th>
+                            <th scope="col">IMAGEN</th>
                             <th scope="col">ESTADO</th>
                             <th scope="col">ACCIONES</th>
                         </tr>
@@ -48,6 +49,7 @@
                                 <td><?= $p['anio_publicacion'] ?></td>
                                 <td><?= $p['precio'] ?></td>
                                 <td><?= $p['stock'] ?></td>
+                                <td><?= $p['imagen'] ?></td>
                                 <td>
                                     <span class="badge bg-<?= $p['estado'] === 'Activo' ? 'success' : 'secondary' ?>">
                                         <?= $p['estado'] ?>
