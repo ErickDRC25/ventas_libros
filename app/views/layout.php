@@ -25,6 +25,10 @@
                     <a class="nav-link <?= ($_GET['controller'] ?? '') === 'Autor' ? 'active' : '' ?>"
                         href="index.php?controller=Autor&action=index">Autores</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= ($_GET['controller'] ?? '') === 'Editorial' ? 'active' : '' ?>"
+                        href="index.php?controller=Editorial&action=index">Editorial</a>
+                </li>
  
             </ul>
         </div>

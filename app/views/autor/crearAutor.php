@@ -25,7 +25,7 @@
 
                 <div class="col-md-6 mb-3">
                     <label for="fnacimiento">Fecha de Nacimiento</label>
-                    <input type="date" name="fecha_nacimiento" id="fnacimiento">
+                    <input type="date" class="form-control" name="fecha_nacimiento" id="fnacimiento">
                 </div>
             </div>
 

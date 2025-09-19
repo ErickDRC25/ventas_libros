@@ -19,6 +19,28 @@ class Cliente{
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    public function listar(){
+        $stmt=$this->db->query("SELECT * FROM cliente");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function desactivar($id){
+        $sql = "UPDATE cliente set estado='Inactivo' where id_cliente=:id_cliente";
+        $stmt=$this->db->prepare($sql);
+        return $stmt->execute([
+            "id_cliente" =>$id
+        ]);
+    }
+
+    public function activar($id){
+        $sql = "UPDATE cliente set estao='Activo' where id_cliente=:id_cliente";
+        $stmt=$this->db->prepare($sql);
+        return $stmt->execute([
+            "id_cliente"=>$id
+        ]);
+    }
 }
 
 ?>
