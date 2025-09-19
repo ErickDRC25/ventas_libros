@@ -11,10 +11,13 @@ class Libro
     }
     public function obtenerTodos()
     {
-        $sql = "SELECT * FROM libro";
+        $sql = "SELECT l.id_libro, l.titulo, l.precio, l.imagen,
+                   CONCAT(a.nombre_autor, ' ', a.apellido_autor) AS autor
+            FROM libro l
+            INNER JOIN autor a ON l.id_autor = a.id_autor";
 
-        $st = $this->db->query($sql);
-        return $st->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function buscarTitulo($titulo)
     {
@@ -49,7 +52,7 @@ class Libro
         return $stmt->execute($data);
     }
 
-  
+
     public function eliminar($id)
     {
         $sql = "DELETE FROM Libro WHERE id_libro = :id_libro";

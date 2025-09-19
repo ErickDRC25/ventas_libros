@@ -1,7 +1,7 @@
 
  <?php
-    $controller = $_GET['controller'] ?? 'Auth';
-    $action = $_GET['action'] ?? 'login';
+    $controller = $_GET['controller'] ?? 'Catalogo';
+    $action = $_GET['action'] ?? 'index';
 
     $controllerName = $controller .'Controller';
     $controllerPath = "app/controller/$controllerName.php";

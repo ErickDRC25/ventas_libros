@@ -56,6 +56,24 @@ class LibroController
             exit();
         }
 
+        $rutaImagen = null;
+        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+            $directorio = "public/imagenes/libros/";
+
+            // Crear carpeta si no existe
+            if (!file_exists($directorio)) {
+                mkdir($directorio, 0777, true);
+            }
+
+            // Nombre único
+            $nombreArchivo = time() . "_" . basename($_FILES['imagen']['name']);
+            $rutaDestino = $directorio . $nombreArchivo;
+
+            if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
+                $rutaImagen = $rutaDestino;
+            }
+        }
+
         $data = [
             'titulo' => $_POST['txtTitulo'] ?? '',
             'isbn' => $_POST['txtIsbn'] ?? '', // Nota: este sigue siendo un error de ortografía
@@ -65,7 +83,7 @@ class LibroController
             'anio_publicacion' => $_POST['txtAnioPublicacion'] ?? '',
             'precio' => $_POST['txtPrecio'] ?? '',
             'stock' => $_POST['txtStock'] ?? '',
-            'stock' => $_POST['txtStock'] ?? '',
+            'imagen' => $rutaImagen ?? '',
         ];
         $libro =  new Libro();
 
