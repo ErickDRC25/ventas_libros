@@ -74,4 +74,15 @@ class Libro
         $stmt = $this->db->prepare($sql);
         return $stmt->execute(['id_libro' => $id]);
     }
+
+    // Una funcion para actualizar los libros:
+    public function actualizarStock($id_libro, $cantidad)
+    {
+        $sql = "UPDATE libro SET stock = stock + :cantidad WHERE id_libro = :id_libro";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            ':cantidad' => $cantidad,
+            ':id_libro' => $id_libro
+        ]);
+    }
 }
