@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Libros</title>
+    <title><?= $titulo ?? 'Carrito de Compras' ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
-    <!-- Navbar -->
+    <!-- Navbar para cliente -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.php?controller=Catalogo&action=index">
@@ -61,71 +61,8 @@
         </div>
     </nav>
 
-    <!-- Contenido Principal -->
-    <div class="container my-5">
-        <!-- Header -->
-        <div class="row mb-4">
-            <div class="col-12 text-center">
-                <h1 class="display-5 fw-bold text-primary">Catálogo de Libros</h1>
-                <p class="lead text-muted">Descubre las mejores obras literarias</p>
-            </div>
-        </div>
-
-        <!-- Grid de Libros -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            <?php foreach ($libros as $libro): ?>
-                <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <!-- Imagen -->
-                        <div class="ratio ratio-4x3">
-                            <img src="<?= $libro['imagen'] ?>"
-                                class="card-img-top object-fit-cover"
-                                alt="<?= $libro['titulo'] ?>">
-                        </div>
-
-                        <!-- Contenido -->
-                        <div class="card-body d-flex flex-column">
-                            <h6 class="card-title fw-bold"><?= $libro['titulo'] ?></h6>
-                            <p class="card-text text-muted small mb-2">
-                                <i class="bi bi-person"></i> <?= $libro['autor'] ?>
-                            </p>
-                            <p class="card-text text-primary fw-semibold mb-3">
-                                S/ <?= number_format($libro['precio'], 2) ?>
-                            </p>
-
-                            <!-- Botones -->
-                            <div class="mt-auto">
-                                <?php if (isset($_SESSION['id_cliente'])): ?>
-                                    <form action="index.php?controller=Carrito&action=agregar&id=<?= $libro['id_libro'] ?>" method="POST" class="d-grid">
-                                        <input type="hidden" name="cantidad" value="1">
-                                        <button type="submit" class="btn btn-primary btn-sm">
-                                            <i class="bi bi-cart-plus"></i> Agregar
-                                        </button>
-                                    </form>
-                                <?php else: ?>
-                                    <div class="d-grid">
-                                        <a href="index.php?controller=Auth&action=login" class="btn btn-outline-primary btn-sm">
-                                            <i class="bi bi-cart-plus"></i> Iniciar sesión para comprar
-                                        </a>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-
-        <!-- Mensaje si no hay libros -->
-        <?php if (empty($libros)): ?>
-            <div class="row mt-5">
-                <div class="col-12 text-center">
-                    <div class="alert alert-info">
-                        <i class="bi bi-info-circle"></i> No hay libros disponibles en este momento.
-                    </div>
-                </div>
-            </div>
-        <?php endif; ?>
+    <div class="container mt-4">
+        <?php require $vista; ?>
     </div>
 
     <!-- Footer -->
@@ -150,7 +87,6 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
