@@ -35,29 +35,27 @@
                 <div class="d-grid mb-3">
                     <button type="submit" class="btn btn-primary login-button">INGRESAR</button>
                 </div>
+                <div class="d-grid mb-3">
+                    <a href="index.php?controller=Catalogo&action=index" class="btn btn-primary login-button">CANCELAR</a>
+                </div>
+
             </form>
-
         </div>
 
-        <div class="login-image-section">
-            <img src="app/assets/img/logolibro.jpg" alt="Person doing exercise" class="img-fluid">
-        </div>
-    </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9fTU+INsYdYd+Q+2c5i/K2z4Z" crossorigin="anonymous"></script>
+        <script>
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#password');
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9fTU+INsYdYd+Q+2c5i/K2z4Z" crossorigin="anonymous"></script>
-    <script>
-        const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#password');
-
-        if (togglePassword) {
-            togglePassword.addEventListener('click', function(e) {
-                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-                password.setAttribute('type', type);
-                this.querySelector('i').classList.toggle('bi-eye');
-                this.querySelector('i').classList.toggle('bi-eye-slash');
-            });
-        }
-    </script>
+            if (togglePassword) {
+                togglePassword.addEventListener('click', function(e) {
+                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                    password.setAttribute('type', type);
+                    this.querySelector('i').classList.toggle('bi-eye');
+                    this.querySelector('i').classList.toggle('bi-eye-slash');
+                });
+            }
+        </script>
 </body>
 
 </html>

@@ -98,7 +98,6 @@ class LibroController
 
     public function editar()
     {
-
         $id = $_GET['id_libro'] ?? null;
 
         if (!$id) {
@@ -112,29 +111,70 @@ class LibroController
             echo "Libro no encontrado";
             return;
         }
+
+        // Traer autores y editoriales para el formulario
+        require_once 'app/models/Autor.php';
+        require_once 'app/models/Editorial.php';
+        $autorModel = new Autor();
+        $editorialModel = new Editorial();
+        $autores = $autorModel->listar(); // Método para listar autores
+        $editoriales = $editorialModel->listar(); // Método para listar editoriales
+
         $vista = 'app/views/Libro/editar.php';
         $titulo = "Editar Libro";
         require 'app/views/layout.php';
     }
+
     //falta
     public function actualizar()
-    {
-        $data = [
-            'id_libro' => $_POST['id'] ?? '',
-            'titulo' => $_POST['txtTitulo'] ?? '',
-            'isbn' => $_POST['txtIsbn'] ?? '',
-            'id_autor' => $_POST['txtAutorId'] ?? '',
-            'id_editorial' => $_POST['txtEditorialId'] ?? '',
-            'genero' => $_POST['txtGenero'] ?? '',
-            'anio_publicacion' => $_POST['txtAnioPublicacion'] ?? '',
-            'precio' => $_POST['txtPrecio'] ?? '',
-            'stock' => $_POST['txtStock'] ?? ''
-        ];
-        $libro =  new Libro();
-        $libro->actualizar($data);
-        header('Location: index.php?controller=Libro&action=index');
-        exit();
+{
+    // Verificar si el archivo de imagen fue subido
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+        // Procesar la nueva imagen
+        $directorio = "public/imagenes/libros/";
+
+        // Crear carpeta si no existe
+        if (!file_exists($directorio)) {
+            mkdir($directorio, 0777, true);
+        }
+
+        // Nombre único para el archivo
+        $nombreArchivo = time() . "_" . basename($_FILES['imagen']['name']);
+        $rutaDestino = $directorio . $nombreArchivo;
+
+        if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
+            // Si la imagen se sube correctamente, actualizamos la URL
+            $rutaImagen = $rutaDestino;
+        } else {
+            // Si no se pudo cargar la imagen, mantener la imagen actual (en caso de no querer cambiarla)
+            $rutaImagen = $_POST['imagen_actual']; // Usar la imagen anterior
+        }
+    } else {
+        // Si no hay imagen nueva, usamos la imagen que ya está
+        $rutaImagen = $_POST['imagen_actual']; // Usar la imagen anterior
     }
+
+    $data = [
+        'id_libro' => $_POST['id'] ?? '',
+        'titulo' => $_POST['txtTitulo'] ?? '',
+        'isbn' => $_POST['txtIbsn'] ?? '',
+        'id_autor' => $_POST['txtAutorId'] ?? '',
+        'id_editorial' => $_POST['txtEditorialId'] ?? '',
+        'genero' => $_POST['txtGenero'] ?? '',
+        'anio_publicacion' => $_POST['txtAnioPublicacion'] ?? '',
+        'precio' => $_POST['txtPrecio'] ?? '',
+        'stock' => $_POST['txtStock'] ?? '',
+        'imagen' => $rutaImagen, // Aquí está la URL de la nueva imagen o la anterior
+    ];
+
+    $libro = new Libro();
+    $libro->actualizar($data);  // Actualizamos el libro con los nuevos datos
+
+    header('Location: index.php?controller=Libro&action=index');
+    exit();
+}
+
+
     //hasta aqui
     public function eliminar()
     {
