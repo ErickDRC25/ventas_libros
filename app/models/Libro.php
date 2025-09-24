@@ -11,10 +11,11 @@ class Libro
     }
     public function obtenerTodos()
     {
-        $sql = "SELECT l.id_libro, l.titulo, l.precio, l.imagen,
+       /* $sql = "SELECT l.id_libro, l.titulo, l.precio, l.imagen,
                    CONCAT(a.nombre_autor, ' ', a.apellido_autor) AS autor
             FROM libro l
-            INNER JOIN autor a ON l.id_autor = a.id_autor";
+            INNER JOIN autor a ON l.id_autor = a.id_autor";*/
+            $sql = "SELECT * FROM Libro";
 
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

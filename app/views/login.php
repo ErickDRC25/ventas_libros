@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="d-grid mb-3">
-                    <button type="submit" class="btn btn-primary login-button">Log In</button>
+                    <button type="submit" class="btn btn-primary login-button">INGRESAR</button>
                 </div>
             </form>
 

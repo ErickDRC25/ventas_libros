@@ -17,7 +17,7 @@
         <th scope="col">DIRECCION</th>
         <th scope="col">ESTADO</th>
         <th scope="col">ACCIONES</th>
-        
+
       </tr>
     </thead>
     <tbody>
@@ -29,7 +29,7 @@
           <td><?= $editorial['correo'] ?></td>
           <td><?= $editorial['direccion'] ?></td>
           <td><?= $editorial['estado'] ?></td>
-          
+
           <td>
             <?php
             if ($editorial['estado'] === 'Activo') : ?>
