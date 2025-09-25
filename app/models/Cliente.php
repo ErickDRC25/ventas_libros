@@ -44,4 +44,20 @@ class Cliente
             "id_cliente"=>$id
         ]);
     }
+
+    public function cambiarRolAdmin($id){
+        $sql="UPDATE cliente set id_rol=1 where id_cliente=:id_cliente";
+        $stmt=$this->db->prepare($sql);
+        return $stmt->execute([
+            "id_cliente"=>$id
+        ]);
+    }
+
+    public function cambiarRolCliente($id){
+        $sql="UPDATE cliente set id_rol=2 where id_cliente=:id_cliente";
+        $stmt=$this->db->prepare($sql);
+        return $stmt->execute([
+            "id_cliente"=>$id
+        ]);
+    }
 }
