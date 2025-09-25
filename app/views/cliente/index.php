@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between mb-3">
-    <h3>Listado de Editoriales</h3>
+    <h3>Listado de Usuarios</h3>
 
 </div>
 

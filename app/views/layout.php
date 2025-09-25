@@ -26,7 +26,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= ($_GET['controller'] ?? '') === 'Cliente' ? 'active' : '' ?>"
-                        href="index.php?controller=Cliente&action=index">Cliente</a>
+                        href="index.php?controller=Cliente&action=index">Usuarios</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= ($_GET['controller'] ?? '') === 'Autor' ? 'active' : '' ?>"
