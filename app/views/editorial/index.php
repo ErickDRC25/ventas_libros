@@ -1,52 +1,64 @@
-<div class="d-flex justify-content-between mb-3">
-  <h3>Listado de Editoriales</h3>
-  <a href="index.php?controller=Editorial&action=crearEditorial" class="btn btn-success mb-3">
-
-    Agregar Editorial
-  </a>
-</div>
-
-<div class="container text-center">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">NOMBRE E.</th>
-        <th scope="col">TELEFONO</th>
-        <th scope="col">CORREO</th>
-        <th scope="col">DIRECCION</th>
-        <th scope="col">ESTADO</th>
-        <th scope="col">ACCIONES</th>
-
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($editoriales as $editorial) { ?>
-        <tr>
-          <td><?= $editorial['id_editorial'] ?></td>
-          <td><?= $editorial['nombre_editorial'] ?></td>
-          <td><?= $editorial['telefono'] ?></td>
-          <td><?= $editorial['correo'] ?></td>
-          <td><?= $editorial['direccion'] ?></td>
-          <td>
-            <span class="badge bg-<?= $editorial['estado'] === 'Activo' ? 'success' : 'secondary' ?>">
-              <?= $editorial['estado'] ?>
-            </span>
-          </td>
-
-          <td>
-            <?php
-            if ($editorial['estado'] === 'Activo') : ?>
-              <div class="d-flex gap-2">
-                <a href="index.php?controller=Editorial&action=editarEditorial&id=<?= $editorial['id_editorial'] ?>" class="btn btn-warning" role="button">Editar</a>
-                <a href="index.php?controller=Editorial&action=desactivarEditorial&id=<?= $editorial['id_editorial'] ?>" class="btn btn-danger" role="button">Eliminar</a>
-              </div>
-            <?php else:  ?>
-              <a href="index.php?controller=Editorial&action=activarEditorial&id=<?= $editorial['id_editorial'] ?>" class="btn btn-success" role="button">Activar</a>
-            <?php endif;  ?>
-          </td>
-        </tr>
-      <?php } ?>
-    </tbody>
-  </table>
+<div class="card shadow">
+    <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+        <h2 class="card-title mb-0">
+            <i class="bi bi-building"></i> Listado de Editoriales
+        </h2>
+        <a href="index.php?controller=Editorial&action=crearEditorial" class="btn btn-dark btn-sm">
+            <i class="bi bi-plus-circle"></i> Agregar Editorial
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped text-center align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Dirección</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($editoriales as $editorial) { ?>
+                        <tr>
+                            <td><strong>#<?= $editorial['id_editorial'] ?></strong></td>
+                            <td><?= $editorial['nombre_editorial'] ?></td>
+                            <td><?= $editorial['telefono'] ?: 'N/A' ?></td>
+                            <td><?= $editorial['correo'] ?: 'N/A' ?></td>
+                            <td><?= $editorial['direccion'] ?: 'N/A' ?></td>
+                            <td>
+                                <span class="badge bg-<?= $editorial['estado'] === 'Activo' ? 'success' : 'secondary' ?>">
+                                    <?= $editorial['estado'] ?>
+                                </span>
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="index.php?controller=Editorial&action=editarEditorial&id=<?= $editorial['id_editorial'] ?>"
+                                        class="btn btn-warning btn-sm" title="Editar">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <?php if ($editorial['estado'] === 'Activo') : ?>
+                                        <a href="index.php?controller=Editorial&action=desactivarEditorial&id=<?= $editorial['id_editorial'] ?>"
+                                            class="btn btn-danger btn-sm" title="Desactivar"
+                                            onclick="return confirm('¿Desactivar esta editorial?')">
+                                            <i class="bi bi-building-x"></i>
+                                        </a>
+                                    <?php else: ?>
+                                        <a href="index.php?controller=Editorial&action=activarEditorial&id=<?= $editorial['id_editorial'] ?>"
+                                            class="btn btn-success btn-sm" title="Activar"
+                                            onclick="return confirm('¿Activar esta editorial?')">
+                                            <i class="bi bi-building-check"></i>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
