@@ -45,7 +45,7 @@
             </ul>
         </div>
         <span class="navbar-text text-white me-3">
-            Bienvenido , <?= $_SESSION['usuario']['correo'] ?? 'Usuario' ?>
+            Bienvenido , <?= $_SESSION['usuario'] ?? 'Usuario' ?>
         </span>
         <a href="index.php?controller=Auth&action=cerrar_sesion" class="btn btn-outline-light">Cerrar Sesión</a>
     </nav>
