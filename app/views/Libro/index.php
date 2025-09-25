@@ -34,6 +34,7 @@
                         <th>Autor</th>
                         <th>Editorial</th>
                         <th>Género</th>
+                        <th>Año Publicación</th>
                         <th>Precio</th>
                         <th>Stock</th>
                         <th>Estado</th>
@@ -44,19 +45,12 @@
                     <?php foreach ($libros as $p) : ?>
                         <tr>
                             <td><strong>#<?= $p['id_libro'] ?></strong></td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <?php if ($p['imagen']): ?>
-                                        <img src="<?= $p['imagen'] ?>" alt="<?= $p['titulo'] ?>"
-                                            class="rounded me-2" width="40" height="50" style="object-fit: cover;">
-                                    <?php endif; ?>
-                                    <span><?= $p['titulo'] ?></span>
-                                </div>
-                            </td>
+                            <td><?= $p['titulo'] ?></td>
                             <td><?= $p['isbn'] ?: 'N/A' ?></td>
                             <td><?= $p['autor'] ?></td>
                             <td><?= $p['nombre_editorial'] ?></td>
                             <td><?= $p['genero'] ?: 'N/A' ?></td>
+                            <td><?= $p['anio_publicacion'] ?></td>
                             <td class="fw-bold text-success">S/ <?= number_format($p['precio'], 2) ?></td>
                             <td>
                                 <span class="badge bg-<?= $p['stock'] > 0 ? 'primary' : 'danger' ?>">
@@ -69,17 +63,15 @@
                                 </span>
                             </td>
                             <td>
-                                <div class="btn-group" role="group">
-                                    <a href="index.php?controller=Libro&action=editar&id_libro=<?= $p['id_libro'] ?>"
-                                        class="btn btn-warning btn-sm" title="Editar">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <a href="index.php?controller=Libro&action=eliminar&id_libro=<?= $p['id_libro'] ?>"
-                                        class="btn btn-danger btn-sm" title="Eliminar"
-                                        onclick="return confirm('¿Eliminar este libro?')">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                </div>
+                                <a href="index.php?controller=Libro&action=editar&id_libro=<?= $p['id_libro'] ?>"
+                                    class="btn btn-warning btn-sm me-1" title="Editar">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a href="index.php?controller=Libro&action=eliminar&id_libro=<?= $p['id_libro'] ?>"
+                                    class="btn btn-danger btn-sm" title="Eliminar"
+                                    onclick="return confirm('¿Eliminar este libro?')">
+                                    <i class="bi bi-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

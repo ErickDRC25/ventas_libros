@@ -9,7 +9,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped text-center align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">ID</th>
@@ -17,6 +17,7 @@
                         <th scope="col">Apellido</th>
                         <th scope="col">Nacionalidad</th>
                         <th scope="col">Fecha Nac.</th>
+                        <th scope="col">Biografía</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
                     </tr>
@@ -29,6 +30,7 @@
                             <td><?= $autor['apellido_autor'] ?></td>
                             <td><?= $autor['nacionalidad'] ?></td>
                             <td><?= date('d/m/Y', strtotime($autor['fecha_nacimiento'])) ?></td>
+                            <td><?= $autor['biografia'] ?: 'N/A' ?></td>
                             <td>
                                 <span class="badge bg-<?= $autor['estado'] === 'Activo' ? 'success' : 'secondary' ?>">
                                     <?= $autor['estado'] ?>

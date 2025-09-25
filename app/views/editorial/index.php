@@ -9,13 +9,14 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped text-center align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Teléfono</th>
                         <th>Correo</th>
+                        <th>Dirección</th>
                         <th>Estado</th>
                         <th>Acciones</th>
                     </tr>
@@ -27,6 +28,7 @@
                             <td><?= $editorial['nombre_editorial'] ?></td>
                             <td><?= $editorial['telefono'] ?: 'N/A' ?></td>
                             <td><?= $editorial['correo'] ?: 'N/A' ?></td>
+                            <td><?= $editorial['direccion'] ?: 'N/A' ?></td>
                             <td>
                                 <span class="badge bg-<?= $editorial['estado'] === 'Activo' ? 'success' : 'secondary' ?>">
                                     <?= $editorial['estado'] ?>

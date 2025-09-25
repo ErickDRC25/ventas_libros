@@ -1,19 +1,21 @@
 <div class="card shadow">
-    <div class="card-header bg-info text-white">
+    <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
         <h2 class="card-title mb-0">
             <i class="bi bi-people"></i> Listado de Usuarios
         </h2>
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped text-center align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Correo</th>
+                        <th>Contraseña</th>
                         <th>Teléfono</th>
+                        <th>Dirección</th>
                         <th>Rol</th>
                         <th>Estado</th>
                         <th>Acciones</th>
@@ -26,12 +28,16 @@
                             <td><?= $cliente['nombre'] ?></td>
                             <td><?= $cliente['apellido'] ?></td>
                             <td><?= $cliente['correo'] ?></td>
+                            <td><?= $cliente['password'] ?></td>
                             <td><?= $cliente['telefono'] ?: 'N/A' ?></td>
+                            <td><?= $cliente['direccion'] ?: 'N/A' ?></td>
                             <td>
                                 <?php if ($cliente['id_rol'] == 1): ?>
                                     <span class="badge bg-danger">Admin</span>
-                                <?php else: ?>
+                                <?php elseif ($cliente['id_rol'] == 2): ?>
                                     <span class="badge bg-primary">Cliente</span>
+                                <?php else: ?>
+                                    <span class="badge bg-secondary">Desconocido</span>
                                 <?php endif; ?>
                             </td>
                             <td>
