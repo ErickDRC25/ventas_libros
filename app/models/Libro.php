@@ -10,17 +10,32 @@ class Libro
         $this->db = Database::conectar();
     }
     public function obtenerTodos()
-{
-    $sql = "SELECT l.id_libro, l.titulo, l.isbn, l.id_autor, l.id_editorial, l.genero, l.anio_publicacion, 
-                   l.precio, l.stock, l.imagen, l.estado,
+    {
+        /* $sql = "SELECT l.id_libro, l.titulo, l.precio, l.imagen,
                    CONCAT(a.nombre_autor, ' ', a.apellido_autor) AS autor
+            FROM libro l
+            INNER JOIN autor a ON l.id_autor = a.id_autor";*/
+        //$sql = "SELECT * FROM Libro";
+
+        $sql = "SELECT l.id_libro,
+                        l.titulo,
+                        l.isbn, 
+                        l.id_autor, 
+                        l.id_editorial,
+                        l.genero,
+                        l.anio_publicacion, 
+                        l.precio, 
+                        l.stock, 
+                        l.imagen,
+                        l.estado,
+                        CONCAT(a.nombre_autor, ' ', a.apellido_autor) AS autor
             FROM libro l
             INNER JOIN autor a ON l.id_autor = a.id_autor
             INNER JOIN editorial e ON l.id_editorial = e.id_editorial";
 
-    $stmt = $this->db->query($sql);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function buscarTitulo($titulo)
     {

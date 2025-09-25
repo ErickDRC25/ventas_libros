@@ -12,7 +12,9 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Mi App</a>
+        <a class="navbar-brand">
+            📚 Librería
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,20 +33,17 @@
                     <a class="nav-link <?= ($_GET['controller'] ?? '') === 'Editorial' ? 'active' : '' ?>"
                         href="index.php?controller=Editorial&action=index">Editorial</a>
                 </li>
- 
 
-                    <a class="nav-link <?= ($_GET['controller'] ?? '') === 'Libro' ? 'active' : '' ?>"
-                        href="index.php?controller=Libro&action=index">LIBRO</a>
+
+                <a class="nav-link <?= ($_GET['controller'] ?? '') === 'Libro' ? 'active' : '' ?>"
+                    href="index.php?controller=Libro&action=index">Libro</a>
                 </li>
-
-
             </ul>
         </div>
         <span class="navbar-text text-white me-3">
             Bienvenido , <?= $_SESSION['usuario']['correo'] ?? 'Usuario' ?>
         </span>
         <a href="index.php?controller=Auth&action=cerrar_sesion" class="btn btn-outline-light">Cerrar Sesión</a>
-
     </nav>
     <div class="container mt-4">
         <?php require $vista; ?>
