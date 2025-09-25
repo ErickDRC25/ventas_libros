@@ -22,6 +22,19 @@ class Venta
         return $this->db->lastInsertId();
     }
 
+    public function obtenerTodas()
+    {
+        $sql = "SELECT v.*, c.nombre, c.apellido, c.correo 
+                FROM venta v 
+                LEFT JOIN cliente c ON v.id_cliente = c.id_cliente 
+                ORDER BY v.fecha_venta DESC";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function obtenerPorCliente($id_cliente)
     {
         $sql = "SELECT v.*, COUNT(dv.id_detalle) as total_items 
@@ -30,10 +43,10 @@ class Venta
                 WHERE v.id_cliente = :id_cliente 
                 GROUP BY v.id_venta 
                 ORDER BY v.fecha_venta DESC";
-
+        
         $stmt = $this->db->prepare($sql);
         $stmt->execute([':id_cliente' => $id_cliente]);
-
+        
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
