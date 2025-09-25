@@ -29,7 +29,11 @@
           <td><?= $autor['nacionalidad'] ?></td>
           <td><?= $autor['fecha_nacimiento'] ?></td>
           <td><?= $autor['biografia'] ?></td>
-          <td><?= $autor['estado'] ?></td>
+          <td>
+            <span class="badge bg-<?= $autor['estado'] === 'Activo' ? 'success' : 'secondary' ?>">
+              <?= $autor['estado'] ?>
+            </span>
+          </td>
           <td>
             <?php
             if ($autor['estado'] === 'Activo') : ?>

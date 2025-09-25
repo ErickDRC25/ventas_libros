@@ -39,7 +39,11 @@
                             <span class="badge bg-secondary">Desconocido</span>
                         <?php endif; ?>
                     </td>
-                    <td><?= $cliente['estado'] ?></td>
+                    <td>
+                        <span class="badge bg-<?= $cliente['estado'] === 'Activo' ? 'success' : 'secondary' ?>">
+                            <?= $cliente['estado'] ?>
+                        </span>
+                    </td>
                     <td>
                         <?php if ($cliente['id_rol'] === 2) : ?>
                             <div class="d-flex gap-2">
@@ -47,11 +51,11 @@
                                     class="btn btn-warning" role="button">Rol Admin</a>
 
                                 <?php if ($cliente['estado'] == 'Activo'): ?>
-                                    
+
                                     <a href="index.php?controller=Cliente&action=desactivar&id=<?= $cliente['id_cliente'] ?>"
                                         class="btn btn-danger" role="button">Desactivar</a>
                                 <?php else: ?>
-                                    
+
                                     <a href="index.php?controller=Cliente&action=activar&id=<?= $cliente['id_cliente'] ?>"
                                         class="btn btn-success" role="button">Activar</a>
                                 <?php endif; ?>

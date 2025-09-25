@@ -18,7 +18,7 @@
                 </div>
             </form>
             <div class="table-responsive">
-                <table class="table table-hover table-sm">
+                <table class="table table-hover table-sm text-center">
                     <thead class="bg-dark text-white">
                         <tr>
                             <th scope="col">ID</th>
@@ -40,8 +40,8 @@
                                 <td><?= $p['id_libro'] ?></td>
                                 <td><?= $p['titulo'] ?></td>
                                 <td><?= $p['isbn'] ?></td>
-                                <td><?= $p['nombre_autor'] ?></td>
-                                <td><?= $p['nombre_editorial'] ?></td>
+                                <td><?= $p['id_autor'] ?></td>
+                                <td><?= $p['id_editorial'] ?></td>
                                 <td><?= $p['genero'] ?></td>
                                 <td><?= $p['anio_publicacion'] ?></td>
                                 <td><?= $p['precio'] ?></td>

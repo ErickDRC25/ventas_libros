@@ -28,7 +28,11 @@
           <td><?= $editorial['telefono'] ?></td>
           <td><?= $editorial['correo'] ?></td>
           <td><?= $editorial['direccion'] ?></td>
-          <td><?= $editorial['estado'] ?></td>
+          <td>
+            <span class="badge bg-<?= $editorial['estado'] === 'Activo' ? 'success' : 'secondary' ?>">
+              <?= $editorial['estado'] ?>
+            </span>
+          </td>
 
           <td>
             <?php
