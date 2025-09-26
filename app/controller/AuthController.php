@@ -39,4 +39,37 @@ class AuthController
         session_destroy();
         header("Location: index.php");
     }
+
+
+    public function registrar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre = $_POST['nombre'];
+            $apellido = $_POST['apellido'];
+            $correo = $_POST['correo'];
+            $telefono = $_POST['telefono'] ?? null;
+            $direccion = $_POST['direccion'] ?? null;
+            $password = $_POST['password'];
+            $password2 = $_POST['password2'];
+
+            
+            if ($password !== $password2) {
+                echo "<script>alert('Las contraseñas no coinciden');window.location='index.php?controller=Auth&action=registrar';</script>";
+                exit();
+            }
+
+            $cliente = new Cliente();
+            $resultado = $cliente->registrar($nombre, $apellido, $correo, $telefono, $direccion, $password);
+
+            if ($resultado) {
+                echo "<script>alert('Registro exitoso, ya puedes iniciar sesión');window.location='index.php?controller=Auth&action=login';</script>";
+                exit;
+            } else {
+                echo "<script>alert('Error al registrar usuario');window.location='index.php?controller=Auth&action=registrar';</script>";
+                exit;
+            }
+        } else {
+            require_once "app/views/auth/register.php";
+        }
+    }
 }

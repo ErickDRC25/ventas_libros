@@ -39,6 +39,10 @@
                     <a href="index.php?controller=Catalogo&action=index" class="btn btn-primary login-button">CANCELAR</a>
                 </div>
 
+                <p class="text-center mt-3">
+                    ¿No tienes cuenta? <a href="index.php?controller=Auth&action=registrar">Regístrate</a>
+                </p>
+
             </form>
         </div>
 
